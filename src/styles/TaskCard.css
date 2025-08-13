@@ -1,0 +1,322 @@
+.task-card {
+  padding: 1.8rem 2rem;
+  margin-bottom: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  cursor: default;
+}
+
+.task-card:nth-child(odd) {
+  background-color: #f0f5ff; /* হালকা নীল */
+}
+
+.task-card:nth-child(even) {
+  background-color: #fff; /* সাদা */
+}
+
+/* হোভার এবং ফোকাস ইফেক্ট */
+.task-card:hover,
+.task-card:focus {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  transform: translateY(-4px);
+  outline: none;
+}
+
+/* টাস্ক কার্ডের হেডার */
+.task-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1f2937; /* ডার্ক গ্রে */
+  margin: 0;
+}
+
+.priority-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.85rem;
+  user-select: none;
+}
+
+/* টাস্ক ডেসক্রিপশন */
+.task-description {
+  font-size: 1rem;
+  color: #4b5563;
+  line-height: 1.5;
+  min-height: 48px;
+}
+
+/* টাস্ক মেটা সেকশন */
+.task-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.9rem;
+  color: #374151;
+  align-items: center;
+}
+
+.task-meta > div {
+  display: flex;
+  flex-direction: column;
+  min-width: 120px;
+}
+
+.task-meta label {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  color: #4b5563;
+}
+
+.assignee-info span {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* ইনপুট এবং সিলেক্ট স্টাইল */
+.task-meta input[type="date"],
+.task-meta select {
+  padding: 0.3rem 0.5rem;
+  border-radius: 8px;
+  border: 1.5px solid #cbd5e1;
+  font-size: 0.9rem;
+  transition: border-color 0.3s ease;
+}
+
+.task-meta input[type="date"]:focus,
+.task-meta select:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 5px rgba(37, 99, 235, 0.4);
+}
+
+/* Attachments */
+.attachments-section {
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+.attachments-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.attachment-item {
+  background-color: #e0e7ff;
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: #3730a3;
+}
+
+.attachment-link {
+  text-decoration: none;
+  color: inherit;
+  font-weight: 600;
+}
+
+.attachment-link:hover {
+  text-decoration: underline;
+}
+
+.attachment-delete-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #ef4444;
+  transition: color 0.2s ease;
+}
+
+.attachment-delete-btn:hover {
+  color: #b91c1c;
+}
+
+/* No attachments message */
+.no-attachments {
+  font-style: italic;
+  color: #6b7280;
+  margin-top: 0.3rem;
+}
+
+/* Comments */
+.comments-section {
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+.comments-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0.5rem 0;
+  max-height: 140px;
+  overflow-y: auto;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #f9fafb;
+}
+
+.comment-item {
+  padding: 0.3rem 0.6rem;
+  border-bottom: 1px solid #e5e7eb;
+  word-wrap: break-word;
+}
+
+.comment-item:last-child {
+  border-bottom: none;
+}
+
+/* Comment box */
+.comment-box textarea {
+  width: 100%;
+  border-radius: 8px;
+  border: 1.5px solid #cbd5e1;
+  resize: vertical;
+  min-height: 60px;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  transition: border-color 0.3s ease;
+}
+
+.comment-box textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 6px rgba(37, 99, 235, 0.4);
+}
+
+/* Comment buttons */
+.comment-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.8rem;
+  margin-top: 0.5rem;
+}
+
+.btn {
+  padding: 0.35rem 1rem;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn.cancel {
+  background-color: #e5e7eb;
+  color: #374151;
+}
+
+.btn.cancel:hover {
+  background-color: #d1d5db;
+}
+
+.btn.submit {
+  background-color: #2563eb;
+  color: #fff;
+}
+
+.btn.submit:hover {
+  background-color: #1d4ed8;
+}
+
+/* Add comment button */
+.show-comment-btn {
+  background-color: transparent;
+  border: 1.5px solid #2563eb;
+  color: #2563eb;
+  border-radius: 12px;
+  padding: 0.4rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.show-comment-btn:hover {
+  background-color: #2563eb;
+  color: #fff;
+}
+
+/* Created at footer */
+.task-created {
+  font-size: 0.8rem;
+  color: #6b7280;
+  text-align: right;
+  user-select: none;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 0.5rem;
+}
+
+/* Scrollbar for comments */
+.comments-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.comments-list::-webkit-scrollbar-track {
+  background: #f3f4f6;
+  border-radius: 3px;
+}
+
+.comments-list::-webkit-scrollbar-thumb {
+  background-color: #2563eb;
+  border-radius: 3px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .task-card {
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .task-meta {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .task-meta > div {
+    min-width: auto;
+  }
+
+  .task-description {
+    font-size: 0.95rem;
+  }
+
+  .comments-list {
+    max-height: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .task-card {
+    padding: 1rem 1rem;
+  }
+
+  .task-title {
+    font-size: 1.1rem;
+  }
+
+  .btn,
+  .show-comment-btn {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.85rem;
+  }
+}

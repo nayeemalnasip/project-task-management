@@ -1,0 +1,171 @@
+.task-form {
+  max-width: 480px;
+  margin: 1rem auto;
+  padding: 1.8rem 2rem;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1e293b;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 0.25rem;
+}
+
+.required-star {
+  color: #ef4444;
+  margin-left: 2px;
+}
+
+input[type="text"],
+input[type="date"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  font-size: 1rem;
+  border: 1.8px solid #cbd5e1;
+  border-radius: 10px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  font-family: inherit;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.4);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+  line-height: 1.4;
+}
+
+.input-helper-text {
+  font-size: 0.82rem;
+  color: #64748b;
+  margin-top: -0.75rem;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+/* Assignee input + suggestion box */
+.assignee-wrapper {
+  position: relative;
+}
+
+.assignee-suggestions {
+  position: absolute;
+  z-index: 10;
+  background: #f9fafb;
+  border: 1.5px solid #cbd5e1;
+  border-top: none;
+  max-height: 160px;
+  overflow-y: auto;
+  width: 100%;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.assignee-suggestion-item {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+  color: #1e293b;
+  user-select: none;
+  transition: background-color 0.2s ease;
+}
+
+.assignee-suggestion-item:hover,
+.assignee-suggestion-item[aria-selected="true"] {
+  background-color: #2563eb;
+  color: white;
+}
+
+.add-assignee-option {
+  padding: 0.5rem 1rem;
+  background-color: #e0e7ff;
+  color: #3730a3;
+  cursor: pointer;
+  font-weight: 600;
+  border-radius: 0 0 12px 12px;
+  user-select: none;
+  transition: background-color 0.3s ease;
+}
+
+.add-assignee-option:hover {
+  background-color: #2563eb;
+  color: #fff;
+}
+
+/* File uploader wrapper */
+.file-uploader-wrapper {
+  margin-top: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+/* Submit button */
+.submit-btn {
+  background-color: #2563eb;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 0.7rem 1.2rem;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.submit-btn:disabled,
+.submit-btn[disabled] {
+  background-color: #94a3b8;
+  cursor: not-allowed;
+}
+
+.submit-btn:not(:disabled):hover {
+  background-color: #1e40af;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .task-form {
+    padding: 1.2rem 1.4rem;
+    max-width: 100%;
+    margin: 0.8rem;
+  }
+
+  .form-title {
+    font-size: 1.3rem;
+  }
+
+  input[type="text"],
+  input[type="date"],
+  select,
+  textarea {
+    font-size: 0.95rem;
+  }
+
+  .submit-btn {
+    font-size: 1rem;
+    padding: 0.6rem 1rem;
+  }
+}

@@ -1,0 +1,169 @@
+/* General resets and fonts */
+.dashboard-shell {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px 16px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9fafb;
+  color: #111827;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.main-area {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Header styling */
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.dashboard-title {
+  font-size: 2.75rem;
+  font-weight: 700;
+  color: #4f46e5; /* Indigo */
+  margin-bottom: 0.3rem;
+}
+
+.dashboard-subtitle {
+  font-size: 1.15rem;
+  color: #6b7280; /* Gray-600 */
+}
+
+/* Task Controls (Search + Filter) */
+.task-controls {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.search-wrapper {
+  position: relative;
+  flex-grow: 1;
+  max-width: 360px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 40px 10px 14px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 2px solid #d1d5db;
+  outline-offset: 2px;
+  transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 6px #4f46e5aa;
+}
+
+.search-icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #9ca3af;
+  pointer-events: none;
+}
+
+.status-filter {
+  min-width: 180px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 2px solid #d1d5db;
+  font-size: 1rem;
+  background: #fff;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.status-filter:hover,
+.status-filter:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 6px #4f46e5aa;
+}
+
+/* Task Form Section */
+.task-form-section {
+  background-color: #ffffff;
+  padding: 20px 24px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(79, 70, 229, 0.15);
+  transition: box-shadow 0.3s ease;
+}
+
+.task-form-section:focus-within {
+  box-shadow: 0 12px 32px rgba(79, 70, 229, 0.3);
+}
+
+/* Task Board Section */
+.taskboard-section {
+  margin-top: 10px;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  font-size: 1.15rem;
+  color: #6b7280;
+  padding: 40px 20px;
+}
+
+/* Chart Section */
+.chart-section {
+  margin-top: 48px;
+  background: #fff;
+  padding: 24px 32px;
+  border-radius: 16px;
+  box-shadow: 0 10px 36px rgba(79, 70, 229, 0.12);
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.chart-section h3 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #4f46e5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .task-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .search-wrapper {
+    max-width: 100%;
+  }
+  .status-filter {
+    width: 100%;
+    min-width: unset;
+    margin-top: 12px;
+  }
+  .dashboard-title {
+    font-size: 2rem;
+  }
+  .chart-section {
+    padding: 20px;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-title {
+    font-size: 1.7rem;
+  }
+}

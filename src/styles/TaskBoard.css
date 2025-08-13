@@ -1,0 +1,87 @@
+.taskboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #f9fafb, #eef2ff);
+  min-height: 70vh;
+  overflow-y: auto;
+  max-height: 85vh;
+  scrollbar-width: thin;
+  scrollbar-color: #4f46e5 #e0e7ff;
+}
+
+/* Scrollbar */
+.taskboard::-webkit-scrollbar {
+  width: 8px;
+}
+.taskboard::-webkit-scrollbar-track {
+  background: #e0e7ff;
+  border-radius: 4px;
+}
+.taskboard::-webkit-scrollbar-thumb {
+  background-color: #4f46e5;
+  border-radius: 4px;
+  border: 2px solid #e0e7ff;
+}
+
+/* Empty State */
+.taskboard-empty {
+  padding: 3rem 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #6b7280;
+  font-weight: 500;
+  user-select: none;
+  background: #fff;
+  margin: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.5s ease forwards;
+}
+
+/* Card Style */
+.taskboard section {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1rem 1.2rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.taskboard section:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Fade animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .taskboard {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .taskboard {
+    grid-template-columns: 1fr;
+    padding: 0.8rem;
+    gap: 1rem;
+  }
+  .taskboard section {
+    padding: 0.8rem;
+  }
+}

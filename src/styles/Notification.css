@@ -1,0 +1,107 @@
+.notification-wrapper {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  width: 320px;
+  max-width: 90vw;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  pointer-events: none; /* container doesn't block clicks */
+}
+
+.notification-item {
+  background: #f0f4ff;
+  color: #1e293b;
+  border-radius: 8px;
+  padding: 0.9rem 1.2rem;
+  box-shadow: 0 4px 12px rgb(100 116 139 / 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: auto; /* individual notification clickable */
+  font-weight: 600;
+  font-size: 0.9rem;
+  opacity: 0;
+  animation: slideInFade 0.5s forwards;
+  user-select: none;
+  outline-offset: 2px;
+  outline: none;
+  transition: box-shadow 0.3s ease;
+}
+
+.notification-item:focus,
+.notification-item:hover {
+  box-shadow: 0 0 15px #4f46e5cc;
+  outline: 2px solid #4f46e5;
+  background: #e0e7ff;
+  cursor: pointer;
+}
+
+/* Type variants */
+.notification-info {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.notification-success {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.notification-error {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.notification-warning {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+/* Close button */
+.close-btn {
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 1rem;
+  transition: color 0.3s ease;
+  line-height: 1;
+  user-select: none;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: #7c3aed;
+  outline: none;
+}
+
+/* Slide in + fade animation */
+@keyframes slideInFade {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .notification-wrapper {
+    width: 90vw;
+    right: 5vw;
+    top: 0.8rem;
+  }
+  .notification-item {
+    font-size: 0.85rem;
+  }
+}

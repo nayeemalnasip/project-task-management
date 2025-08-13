@@ -1,0 +1,117 @@
+@keyframes fadeInOverlay {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(18, 18, 18, 0.7);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  animation: fadeInOverlay 0.3s ease forwards;
+}
+
+.modal-container {
+  background: #1e293b; /* dark blue/gray */
+  color: #f8fafc;
+  padding: 28px 32px;
+  border-radius: 16px;
+  width: 320px;
+  max-width: 90vw;
+  box-shadow:
+    0 12px 24px rgba(255, 0, 0, 0.2),
+    0 4px 12px rgba(0, 0, 0, 0.6);
+  animation: slideDown 0.4s ease forwards;
+  outline: none;
+  user-select: none;
+}
+
+.modal-title {
+  margin: 0 0 12px 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-align: center;
+  color: #ff4d6d;
+  text-shadow: 0 0 10px #ff4d6d99;
+}
+
+.modal-text {
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #e2e8f0;
+}
+
+.file-name {
+  color: #ff6b81;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.warning-text {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: #f87171; /* red tint */
+  font-style: italic;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.btn {
+  flex: 1;
+  padding: 12px 0;
+  font-weight: 600;
+  font-size: 1.05rem;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  user-select: none;
+}
+
+.btn-cancel {
+  background: #64748b; /* slate gray */
+  color: #f1f5f9;
+  box-shadow: 0 0 8px #64748b88;
+}
+
+.btn-cancel:hover,
+.btn-cancel:focus {
+  background: #475569;
+  box-shadow: 0 0 15px #475569cc;
+  outline: none;
+}
+
+.btn-delete {
+  background: #ff4d6d;
+  color: white;
+  box-shadow: 0 0 12px #ff4d6dcc;
+}
+
+.btn-delete:hover,
+.btn-delete:focus {
+  background: #ff2b55;
+  box-shadow: 0 0 25px #ff2b5599;
+  outline: none;
+}

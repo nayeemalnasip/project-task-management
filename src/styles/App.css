@@ -1,0 +1,129 @@
+/* App Container: Flex to layout sidebar + main content */
+.app-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-color: #f9fafb; /* Soft light background */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #374151; /* Dark gray text for readability */
+}
+
+/* Sidebar fixed width, full height */
+.app-container > .sidebar {
+  flex-shrink: 0;
+  width: 280px; /* Sidebar width */
+  height: 100vh;
+  border-right: 1px solid #e5e7eb;
+  background-color: #ffffff; /* pure white */
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
+  z-index: 100;
+  transition: background-color 0.3s ease;
+}
+
+/* Sidebar hover effect */
+.app-container > .sidebar:hover {
+  background-color: #f3f4f6;
+}
+
+/* Main content: takes remaining space */
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-y: auto;
+  background-color: #f3f4f6;
+  padding: 1rem 2rem;
+  scroll-behavior: smooth;
+}
+
+/* Header fixed height without shadow */
+.main-content > header {
+  flex-shrink: 0;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #1f2937;
+}
+
+/* Dashboard area grows */
+.main-content > .dashboard-shell {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-top: 1rem;
+  padding-bottom: 2rem; /* Extra space at bottom */
+}
+
+/* Scrollbar Styling for modern look (Webkit based browsers) */
+.app-container > .sidebar::-webkit-scrollbar,
+.main-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.app-container > .sidebar::-webkit-scrollbar-thumb,
+.main-content::-webkit-scrollbar-thumb {
+  background-color: rgba(79, 70, 229, 0.5); /* Indigo semi-transparent */
+  border-radius: 4px;
+}
+
+.app-container > .sidebar::-webkit-scrollbar-track,
+.main-content::-webkit-scrollbar-track {
+  background-color: #f9fafb;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .app-container {
+    flex-direction: column;
+  }
+
+  .app-container > .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    border-right: none;
+    border-bottom: 1px solid #e5e7eb;
+    background-color: #ffffff;
+  }
+
+  .main-content {
+    height: auto;
+    padding: 1rem 1.5rem;
+  }
+
+  .main-content > header {
+    padding: 1rem 1.5rem;
+  }
+
+  .main-content > .dashboard-shell {
+    margin-top: 0.5rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
+/* Extra small devices - phones */
+@media (max-width: 480px) {
+  .app-container > .sidebar {
+    padding: 0.5rem 1rem;
+  }
+
+  .main-content {
+    padding: 1rem;
+  }
+
+  .main-content > header {
+    font-size: 1.1rem;
+    padding: 0.75rem 1rem;
+  }
+}
