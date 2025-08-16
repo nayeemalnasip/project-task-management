@@ -3,7 +3,6 @@ import TaskBoard from "../components/TaskBoard";
 import TaskStatusChart from "../components/TaskStatusChart";
 import TaskForm from "../components/TaskForm";
 import { useNotification } from "../context/NotificationContext";
-
 import "./Dashboard.css";
 
 const initialTasks = [
@@ -36,6 +35,7 @@ const initialTasks = [
   },
 ];
 
+// Debounce hook for search input
 function useDebounce(value, delay) {
   const [debouncedValue, setDebouncedValue] = useState(value);
   useEffect(() => {
@@ -53,20 +53,28 @@ export default function Dashboard() {
 
   const debouncedSearchTerm = useDebounce(searchTerm, 400);
 
+  // Add new task
   const addTask = (task) => {
     setTasks((prev) => [task, ...prev]);
-    addNotification(`New task "${task.title}" added!`);
+    addNotification({ message: `New task "${task.title}" added!`, type: "success" });
   };
 
+  // Update task status
   const updateTaskStatus = (id, newStatus) => {
     const task = tasks.find((t) => t.id === id);
     if (!task) return;
+
     setTasks((prev) =>
       prev.map((t) => (t.id === id ? { ...t, status: newStatus } : t))
     );
-    addNotification(`Task "${task.title}" status changed to "${newStatus}"`);
+
+    addNotification({
+      message: `Task "${task.title}" status changed to "${newStatus}"`,
+      type: "info",
+    });
   };
 
+  // Filtered tasks based on search and status
   const filteredTasks = useMemo(() => {
     const lowerSearch = debouncedSearchTerm.toLowerCase();
     return tasks.filter((task) => {
@@ -81,6 +89,7 @@ export default function Dashboard() {
     });
   }, [tasks, debouncedSearchTerm, filterStatus]);
 
+  // Unique assignees for dropdowns
   const possibleAssignees = useMemo(() => {
     return tasks
       .map((t) => t.assignee)
@@ -93,6 +102,7 @@ export default function Dashboard() {
   return (
     <div className="dashboard-shell">
       <main className="main-area" aria-label="Dashboard main content">
+        {/* Header */}
         <header className="dashboard-header">
           <h1 className="dashboard-title">Corporate Task Manager</h1>
           <p className="dashboard-subtitle">
@@ -100,6 +110,7 @@ export default function Dashboard() {
           </p>
         </header>
 
+        {/* Search & Filter */}
         <section className="task-controls" aria-label="Task search and filter">
           <div className="search-wrapper">
             <input
@@ -128,37 +139,25 @@ export default function Dashboard() {
           </select>
         </section>
 
-        <section
-          className="task-form-section"
-          aria-label="Add new task form section"
-          tabIndex={-1}
-        >
+        {/* Task Form */}
+        <section className="task-form-section" aria-label="Add new task form section" tabIndex={-1}>
           <TaskForm onAdd={addTask} possibleAssignees={possibleAssignees} />
         </section>
 
-        <section
-          className="taskboard-section"
-          aria-label="Task board section showing filtered tasks"
-        >
+        {/* Task Board */}
+        <section className="taskboard-section" aria-label="Task board section showing filtered tasks">
           {filteredTasks.length === 0 ? (
             <div className="empty-state" role="alert" aria-live="polite">
               No tasks found. Try adjusting your search or filter.
             </div>
           ) : (
-            <TaskBoard
-              tasks={filteredTasks}
-              handlers={{ onStatusChange: updateTaskStatus }}
-            />
+            <TaskBoard tasks={filteredTasks} handlers={{ onStatusChange: updateTaskStatus }} />
           )}
         </section>
 
-        <section
-          className="chart-section"
-          aria-label="Task status overview chart"
-          role="region"
-        >
+        {/* Status Chart */}
+        <section className="chart-section" aria-label="Task status overview chart" role="region">
           <TaskStatusChart tasks={tasks} />
-
         </section>
       </main>
     </div>

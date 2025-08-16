@@ -16,36 +16,37 @@ export default function TaskBoard({ tasks = [], handlers }) {
   const [priorityFilter, setPriorityFilter] = useState("all");
   const [sortBy, setSortBy] = useState("none");
 
-  // Filtered & Sorted tasks
+  // Filter & sort tasks
   const filteredTasks = useMemo(() => {
     let filtered = tasks;
 
-    // Search filter
+    // Search
     if (search.trim()) {
       filtered = filtered.filter(task =>
-        task.title.toLowerCase().includes(search.toLowerCase())
+        task.title.toLowerCase().includes(search.toLowerCase()) ||
+        task.assignee?.name.toLowerCase().includes(search.toLowerCase())
       );
     }
 
     // Status filter
     if (statusFilter !== "all") {
-      filtered = filtered.filter(task => task.status === statusFilter);
+      filtered = filtered.filter(task => task.status.toLowerCase() === statusFilter);
     }
 
     // Priority filter
     if (priorityFilter !== "all") {
-      filtered = filtered.filter(task => task.priority === priorityFilter);
+      filtered = filtered.filter(task => task.priority.toLowerCase() === priorityFilter);
     }
 
-    // Sort logic
+    // Sort
     if (sortBy === "dueDate") {
       filtered = [...filtered].sort(
-        (a, b) => new Date(a.dueDate) - new Date(b.dueDate)
+        (a, b) => new Date(a.due) - new Date(b.due)
       );
     } else if (sortBy === "priority") {
-      const priorityOrder = { high: 1, medium: 2, low: 3 };
+      const order = { high: 1, medium: 2, low: 3 };
       filtered = [...filtered].sort(
-        (a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]
+        (a, b) => order[a.priority.toLowerCase()] - order[b.priority.toLowerCase()]
       );
     }
 
@@ -55,36 +56,53 @@ export default function TaskBoard({ tasks = [], handlers }) {
   return (
     <section className="taskboard-container">
       {/* Controls */}
-      <div className="taskboard-controls">
+      <div className="taskboard-controls premium-controls">
         <input
           type="text"
-          placeholder="Search tasks..."
+          placeholder="Search tasks or assignees..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
+          className="search-input"
         />
-        <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)}>
+
+        <select
+          value={statusFilter}
+          onChange={(e) => setStatusFilter(e.target.value)}
+          className="filter-select"
+        >
           <option value="all">All Status</option>
           <option value="todo">To Do</option>
-          <option value="in-progress">In Progress</option>
-          <option value="done">Done</option>
+          <option value="in progress">In Progress</option>
+          <option value="review">Review</option>
+          <option value="completed">Completed</option>
         </select>
-        <select value={priorityFilter} onChange={(e) => setPriorityFilter(e.target.value)}>
+
+        <select
+          value={priorityFilter}
+          onChange={(e) => setPriorityFilter(e.target.value)}
+          className="filter-select"
+        >
           <option value="all">All Priorities</option>
           <option value="high">High</option>
           <option value="medium">Medium</option>
           <option value="low">Low</option>
         </select>
-        <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+
+        <select
+          value={sortBy}
+          onChange={(e) => setSortBy(e.target.value)}
+          className="filter-select"
+        >
           <option value="none">No Sort</option>
           <option value="dueDate">Sort by Due Date</option>
           <option value="priority">Sort by Priority</option>
         </select>
       </div>
 
-      {/* Task list */}
+      {/* Task grid */}
       {filteredTasks.length === 0 ? (
         <div className="taskboard-empty">
-          <p>No tasks found. Try adjusting your filters or search.</p>
+          <p>No tasks found. Try adjusting your search or filters.</p>
         </div>
       ) : (
         <div className="taskboard-grid">
